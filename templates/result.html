@@ -1,0 +1,217 @@
+<!-- Tulika -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Result Page</title>
+	<style type="text/css">
+		*
+{
+    margin: 0;
+    padding: 0;
+}
+
+header
+{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,100,0.5)),url('static/bg2.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+
+
+}
+
+.nav-bar
+{
+    background: rgb(0,0,0,0.5);
+    height: 80px;
+}
+
+.logo
+{
+    margin: 10px 50px;
+    height: 50px;
+}
+
+.menu
+{
+    float: right;
+    list-style: none;
+    margin: 20px;
+}
+
+.menu li
+{
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+.menu li a
+{
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    border: 1px solid white;
+    
+}
+
+.menu li.active a
+{
+    border: 1px solid white;
+}
+
+.menu li a:hover
+{
+    background: #fff;
+    transition: .4s;
+    color: #000;
+    
+}
+
+.logo img
+{
+    width: 150px;
+    height: auto;
+    float: left;
+}
+
+body
+{
+    font-family: monospace;
+}
+
+.row
+{
+    max-width: 1200px;
+    margin: auto;
+}
+.loginBox
+{
+    color: white;
+
+}
+	</style>
+</head>
+<body>
+<header>
+		<div class="nav-bar">
+                    
+				<img src="static/cap.png" class="logo">                
+			
+		<ul class="menu">
+			<li><a href="/login">Login</a></li>
+		</ul>
+		</div>
+		
+	<div class="loginBox1">
+		<form method="post" action="/show">
+			<input type="text" name="fname" value="{{ fn }}">
+			<div class="btn-group">
+			<input class="btn btn-primary" type="submit"  name="submit" value="Keywords">
+			<input class="btn btn-primary" type="submit" name="submit" value="Variables">
+			<input class="btn btn-primary" type="submit" name="submit" value="Classes">
+			<input type="submit" name="submit" class="btn btn-primary" value="Methods">
+			<input type="submit" name="submit" class="btn btn-primary" value="Loops">
+			<input type="submit" name="submit" class="btn btn-primary" value="Conditions">
+			<input type="submit" name="submit" class="btn btn-primary" value="Description of classes">
+			<input type="submit" name="submit" class="btn btn-primary" value="Depth of Inheritance">
+			<input type="submit" name="submit" class="btn btn-primary" value="Back">
+			</div>
+		</form>
+	</div>	
+	<div class="loginBox">
+			{% if Keys %}
+				<h3>
+				Keywords: <br>
+					{% for z in Keys %}
+						{{ z }}:{{ Keys.get(z) }}<br> 
+					{% endfor %} <br> </h3>
+			{% endif %}		
+			
+
+			{% if Vars %}
+				<h3>
+					Total Number of Variables: {{ count }} <br>
+					Variables:<br> 
+						{% for z in Vars %}
+							{{ z }}:{{ Vars.get(z) }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+			
+
+			{% if Class %}
+				<h3>
+					Classes: <br>
+						{% for x in Class %}
+							{{ x }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+			
+
+			{% if Meth %}
+				<h3>
+					Methods: <br>
+						{% for y in Meth %}
+							{{ y }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+			
+
+			{% if Loops %}
+				<h3>
+					Loops: <br>
+						{% for z in Loops %}
+							{{ Loops.get(z) }}:{{ z }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+			
+
+			{% if Cond %}
+				<h3>
+					Conditions:<br> 
+						{% for z in Cond %}
+							{{ Cond.get(z) }}:{{ z }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+
+			{% if ClassMeth%}
+				<h3>
+					Description of Classes:<br>
+						Methods:<br> 
+						{% for z in ClassMeth %}
+							{{ z }}:{{ ClassMeth.get(z) }} <br> 
+						{% endfor %} <br>
+						Variables:<br>	
+						{% for z in ClassVar %}
+							{{ z }}:{{ ClassVar.get(z) }} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+
+			{% if Depth %}
+				<h3>
+					Depth(Path): <br>
+						{% for y in Depth %}
+						{{y}} <br> 
+						{% endfor %} <br> 
+				</h3>
+			{% endif %}
+	</div>
+</header>	
+</body>
+</html>
